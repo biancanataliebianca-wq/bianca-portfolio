@@ -20,11 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Re-render Twitter widgets for newly shown section
-        if (window.twttr && twttr.widgets) {
-            twttr.widgets.load();
-        }
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -35,6 +30,45 @@ document.addEventListener('DOMContentLoaded', () => {
             history.pushState(null, '', `#${targetId}`);
             switchSection(targetId);
         });
+    });
+
+    // Lazy load Embeds (Twitter, Instagram, YouTube)
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                
+                // Twitter
+                if (el.classList.contains('twitter-tweet-deferred')) {
+                    el.classList.remove('twitter-tweet-deferred');
+                    el.classList.add('twitter-tweet');
+                    if (window.twttr && window.twttr.widgets) {
+                        window.twttr.widgets.load(el.parentElement);
+                    }
+                }
+                
+                // Instagram
+                if (el.classList.contains('instagram-media-deferred')) {
+                    el.classList.remove('instagram-media-deferred');
+                    el.classList.add('instagram-media');
+                    if (window.instgrm && window.instgrm.Embeds) {
+                        window.instgrm.Embeds.process();
+                    }
+                }
+                
+                // YouTube (iframe)
+                if (el.tagName === 'IFRAME' && el.hasAttribute('data-src')) {
+                    el.src = el.getAttribute('data-src');
+                    el.removeAttribute('data-src');
+                }
+                
+                observer.unobserve(el);
+            }
+        });
+    }, { rootMargin: '300px 0px' });
+
+    document.querySelectorAll('.twitter-tweet-deferred, .instagram-media-deferred, iframe[data-src]').forEach(el => {
+        observer.observe(el);
     });
 
     // Illustration Gallery Auto-generation

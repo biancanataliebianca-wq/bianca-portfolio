@@ -7,7 +7,7 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --text-main: #ffffff;
     --text-muted: #ced4da;
-    --font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family: 'Meiryo', 'メイリオ', 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -18,7 +18,7 @@
 
 body {
     font-family: var(--font-family);
-    background-image: url('../assets/bg.png');
+    background-image: url('../assets/bg.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -114,7 +114,7 @@ p { margin-bottom: 1.2rem; }
 
 /* Glass Card */
 .content-card {
-    background: rgba(0, 0, 0, 0.45); /* 不透明度を上げて文字を読みやすく */
+    background: rgba(0, 0, 0, 0.7); /* 不透明度を上げて文字を読みやすく */
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
@@ -312,4 +312,12 @@ footer {
     nav a { font-size: 0.8rem; }
     main { padding-top: 140px; }
     .content-card { padding: 1.5rem; }
+}
+
+
+/* Twitter Embed Fix */
+.twitter-tweet {
+    margin: 1rem auto !important;
+    min-height: 250px;
+    min-width: 250px;
 }

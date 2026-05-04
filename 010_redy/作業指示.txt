@@ -17,6 +17,7 @@ MV
 
 
 "D:\010_Antigravity\010_job\Web_Portfolio\010_redy\00_素材等\top.png"を、すべてのページの背景画（固定）にしてください。
+スマホでサクサク見れるサイトになるよう、画像は9:16で軽くして、全ページの読み込みが早くなるように工夫して下さい。
 
 
 D:\010_Antigravity\010_job\Web_Portfolio\010_redy
